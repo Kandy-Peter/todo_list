@@ -41,12 +41,10 @@ h2,
   align-items: center;
   padding: 0 1rem;
 }
+
 .todoInput {
   width: 100%;
   height: 60px;
-}
-
-.todoInput {
   font-style: italic;
 }
 
@@ -84,5 +82,3 @@ h2,
   justify-content: center;
   text-align: center;
 }
-
-

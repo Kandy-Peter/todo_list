@@ -1,6 +1,8 @@
 # to-do-list
 create a to-do list to manage tasks using javascript vanilla and webpack.
 
+![screenshot](./src/images/screenshoot.png)
+
 ## Built With
 
 -Webpack

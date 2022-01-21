@@ -2,8 +2,8 @@ const list = document.querySelector('.task-content');
 
 let LIST = [];
 
-export const addToDo = (toDo, id, done) => { 
- const item = `
+export const addToDo = (toDo, id, done) => {
+  const item = `
     <li class="todo-task" ${id}>
       <input type="checkbox" class="checkbox"
       ${done ? 'checked' : ''}
