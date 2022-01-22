@@ -50,6 +50,7 @@ const pushToDo = () => {
   }
   input.value = '';
 };
+
 document.addEventListener('keyup', (event) => {
   if (event.keyCode === 13) {
     pushToDo();
