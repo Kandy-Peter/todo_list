@@ -49,11 +49,10 @@ const pushToDo = () => {
     id += 1;
   }
   input.value = '';
-}
+};
 
 document.addEventListener('keyup', (event) => {
   if (event.keyCode === 13) {
     pushToDo();
   }
-})
-
+});

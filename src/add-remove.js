@@ -66,4 +66,3 @@ clear.addEventListener('click', () => {
   const arr = clearAll(LIST);
   loadList(arr);
 });
-
