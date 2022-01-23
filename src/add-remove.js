@@ -16,8 +16,6 @@ export const addToDo = (toDo, id, completed) => {
   list.insertAdjacentHTML('beforeend', item);
 };
 
-const updateLocal = () => localStorage.setItem('todoStore', JSON.stringify(todoArray));
-
 export const removeToDo = (element) => {
   todoArray = todoArray.filter((t) => t.index !== Number(element.id)).map((t, i) => {
     t.index = i;
