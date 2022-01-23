@@ -40,24 +40,24 @@ export const renderTodo = (array) => {
   array.forEach((item) => {
     addToDo(item.title, item.index, item.completed);
   });
-  document.querySelectorAll('.input').forEach((b) => {
-    b.addEventListener('click', () => {
-      b.readOnly = false;
-      b.classList.add('showBtn');
-      b.focus();
+  document.querySelectorAll('.input').forEach((input) => {
+    input.addEventListener('click', () => {
+      input.readOnly = false;
+      input.classList.add('showBtn');
+      input.focus();
     });
-    b.addEventListener('change', () => {
-      b.readOnly = true;
-      const task = todoArray.find((t) => t.index === Number(b.id));
-      task.title = b.value.trim();
-      b.classList.remove('showBtn');
+    input.addEventListener('change', () => {
+      input.readOnly = true;
+      const task = todoArray.find((t) => t.index === Number(input.id));
+      task.title = input.value.trim();
+      input.classList.remove('showBtn');
       localStorage.setItem('todoStore', JSON.stringify(todoArray));
     });
   });
 
-  document.querySelectorAll('.checkbox').forEach((b) => {
-    b.addEventListener('change', () => {
-      completeToDo(todoArray, b);
+  document.querySelectorAll('.checkbox').forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+      completeToDo(todoArray, checkbox);
     });
   });
   document.querySelectorAll('.delete').forEach((btn) => {
