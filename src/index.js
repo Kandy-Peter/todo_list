@@ -1,22 +1,22 @@
 import './style.css';
 import {
-  loadList,
+  renderTodo,
   addToDo,
 } from './add-remove.js';
 
 const input = document.querySelector('.todoInput');
 const refresh = document.querySelector('.refresh');
 
-let LIST = '';
+let todoArray = '';
 let id = '';
 const data = localStorage.getItem('todoStore');
 
 if (data) {
-  LIST = JSON.parse(data);
-  id = LIST.length;
-  loadList(LIST);
+  todoArray = JSON.parse(data);
+  id = todoArray.length;
+  renderTodo(todoArray);
 } else {
-  LIST = [];
+  todoArray = [];
   id = 0;
 }
 
@@ -28,30 +28,30 @@ const pushToDo = () => {
   const data = localStorage.getItem('todoStore');
 
   if (data) {
-    LIST = JSON.parse(data);
-    id = LIST.length;
-    loadList(LIST);
+    todoArray = JSON.parse(data);
+    id = todoArray.length;
+    renderTodo(todoArray);
   } else {
-    LIST = [];
+    todoArray = [];
     id = 0;
   }
-  const toDo = input.value;
-  if (toDo) {
-    addToDo(toDo, id, false);
+  const title = input.value;
+  if (title) {
+    addToDo(title, id, false);
 
-    LIST.push({
-      name: toDo,
+    todoArray.push({
+      title,
       index: id,
-      done: false,
+      completed: false,
     });
-    loadList(LIST);
-    localStorage.setItem('todoStore', JSON.stringify(LIST));
+    renderTodo(todoArray);
+    localStorage.setItem('todoStore', JSON.stringify(todoArray));
     id += 1;
   }
   input.value = '';
 };
 
-document.addEventListener('keyup', (event) => {
+document.addEventListener('keydown', (event) => {
   if (event.keyCode === 13) {
     pushToDo();
   }

@@ -1,15 +1,13 @@
-import { completeToDo, clearAll } from './clear.js';
-
 const list = document.querySelector('.task-content');
 const clear = document.querySelector('.clear');
 
-let LIST = [];
+let todoArray = [];
 
-export const addToDo = (toDo, id, done) => {
+export const addToDo = (toDo, id, completed) => {
   const item = `
     <li class="todo-task" ${id}>
       <input type="checkbox" class="checkbox"
-      ${done ? 'checked' : ''}
+      ${completed ? 'checked' : null}
       id="${id}"/>
         <input class="input" type="text" value='${toDo}' id="${id}" readonly />
       <img src="./images/delete.png" alt="delete" class="delete" id="${id}"/>
@@ -18,21 +16,31 @@ export const addToDo = (toDo, id, done) => {
   list.insertAdjacentHTML('beforeend', item);
 };
 
+const updateLocal = () => localStorage.setItem('todoStore', JSON.stringify(todoArray));
+
 export const removeToDo = (element) => {
-  LIST = LIST.filter((t) => t.index !== Number(element.id)).map((t, i) => {
+  todoArray = todoArray.filter((t) => t.index !== Number(element.id)).map((t, i) => {
     t.index = i;
     return t;
   });
-  localStorage.setItem('todoStore', JSON.stringify(LIST));
+  localStorage.setItem('todoStore', JSON.stringify(todoArray));
 };
-export const loadList = (array) => {
+
+
+const completeToDo = (todoArray, element) => {
+  const task = todoArray.find((t) => t.index === Number(element.id));
+  task.completed = element.checked;
+  localStorage.setItem('todoStore', JSON.stringify(todoArray));
+};
+
+export const renderTodo = (array) => {
   if (array) {
-    LIST = array;
+    todoArray = array;
   }
 
   list.innerHTML = '';
   array.forEach((item) => {
-    addToDo(item.name, item.index, item.done);
+    addToDo(item.title, item.index, item.completed);
   });
   document.querySelectorAll('.input').forEach((b) => {
     b.addEventListener('click', () => {
@@ -42,27 +50,38 @@ export const loadList = (array) => {
     });
     b.addEventListener('change', () => {
       b.readOnly = true;
-      const task = LIST.find((t) => t.index === Number(b.id));
-      task.name = b.value.trim();
+      const task = todoArray.find((t) => t.index === Number(b.id));
+      task.title = b.value.trim();
       b.classList.remove('showBtn');
-      localStorage.setItem('todoStore', JSON.stringify(LIST));
+      localStorage.setItem('todoStore', JSON.stringify(todoArray));
     });
   });
 
   document.querySelectorAll('.checkbox').forEach((b) => {
     b.addEventListener('change', () => {
-      completeToDo(LIST, b);
+      completeToDo(todoArray, b);
     });
   });
   document.querySelectorAll('.delete').forEach((btn) => {
     btn.addEventListener('click', () => {
       removeToDo(btn.parentNode.parentNode);
-      loadList(LIST);
+      renderTodo(todoArray);
     });
   });
 };
 
+const clearAll = (todoArray) => {
+  todoArray = todoArray.filter((t) => !t.completed).map((t, i) => {
+    t.index = i;
+    return t;
+  });
+  localStorage.setItem('todoStore', JSON.stringify(todoArray));
+
+  return todoArray;
+};
+
+
 clear.addEventListener('click', () => {
-  const arr = clearAll(LIST);
-  loadList(arr);
+  const arr = clearAll(todoArray);
+  renderTodo(arr);
 });
