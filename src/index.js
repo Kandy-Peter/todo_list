@@ -2,6 +2,7 @@ import './style.css';
 import {
   renderTodo,
   addToDo,
+  updateToLocal
 } from './add-remove.js';
 
 const input = document.querySelector('.todoInput');
@@ -45,7 +46,7 @@ const pushToDo = () => {
       completed: false,
     });
     renderTodo(todoArray);
-    localStorage.setItem('todoStore', JSON.stringify(todoArray));
+    updateToLocal();
     id += 1;
   }
   input.value = '';

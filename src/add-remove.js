@@ -2,6 +2,9 @@ const list = document.querySelector('.task-content');
 const clear = document.querySelector('.clear');
 
 let todoArray = [];
+export const updateToLocal = () => {
+  localStorage.setItem('todoStore', JSON.stringify(todoArray));
+}
 
 export const addToDo = (toDo, id, completed) => {
   const item = `
@@ -28,7 +31,7 @@ export const removeToDo = (element) => {
 const completeToDo = (todoArray, element) => {
   const task = todoArray.find((t) => t.index === Number(element.id));
   task.completed = element.checked;
-  localStorage.setItem('todoStore', JSON.stringify(todoArray));
+  updateToLocal(todoArray);
 };
 
 export const renderTodo = (array) => {
@@ -51,7 +54,7 @@ export const renderTodo = (array) => {
       const task = todoArray.find((t) => t.index === Number(input.id));
       task.title = input.value.trim();
       input.classList.remove('showBtn');
-      localStorage.setItem('todoStore', JSON.stringify(todoArray));
+      updateToLocal();
     });
   });
 
@@ -73,8 +76,6 @@ const clearAll = (todoArray) => {
     t.index = i;
     return t;
   });
-  localStorage.setItem('todoStore', JSON.stringify(todoArray));
-
   return todoArray;
 };
 
@@ -82,4 +83,5 @@ const clearAll = (todoArray) => {
 clear.addEventListener('click', () => {
   const arr = clearAll(todoArray);
   renderTodo(arr);
+  updateToLocal();
 });
