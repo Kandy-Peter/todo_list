@@ -1,4 +1,5 @@
 const list = document.querySelector('.task-content');
+const clear = document.querySelector('.clear');
 
 let todoArray = [];
 export const updateToLocal = () => {
@@ -77,7 +78,6 @@ const clearAll = (todoArray) => {
   return todoArray;
 };
 
-const clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
   const arr = clearAll(todoArray);
   renderTodo(arr);
