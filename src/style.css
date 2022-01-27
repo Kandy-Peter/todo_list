@@ -14,9 +14,10 @@ body {
   height: 100%;
 }
 
-img {
+i {
   width: 16px;
   height: 16px;
+  color: #8a8a8a;
 }
 
 .container {

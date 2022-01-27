@@ -21,10 +21,6 @@ if (data) {
   id = 0;
 }
 
-refresh.addEventListener('click', () => {
-  localStorage.reload();
-});
-
 const pushToDo = () => {
   const data = localStorage.getItem('todoStore');
 

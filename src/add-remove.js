@@ -13,8 +13,8 @@ export const addToDo = (toDo, id, completed) => {
       ${completed ? 'checked' : null}
       id="${id}"/>
         <input class="input" type="text" value='${toDo}' id="${id}" readonly />
-      <img src="./images/delete.png" alt="delete" class="delete" id="${id}"/>
-      <img src="./images/dots.png" alt="drag" class="drag" id="${id}" />
+        <i class="fas fa-trash-alt delete" id="${id}"></i>
+        <i class="fas fa-ellipsis-v drag" id="${id}"></i>
     </li> `;
   list.insertAdjacentHTML('beforeend', item);
 };
@@ -26,7 +26,6 @@ export const removeToDo = (element) => {
   });
   localStorage.setItem('todoStore', JSON.stringify(todoArray));
 };
-
 
 const completeToDo = (todoArray, element) => {
   const task = todoArray.find((t) => t.index === Number(element.id));
@@ -78,7 +77,6 @@ const clearAll = (todoArray) => {
   });
   return todoArray;
 };
-
 
 clear.addEventListener('click', () => {
   const arr = clearAll(todoArray);

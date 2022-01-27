@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo list</title>
-</head>
-<body>
-	<div class="container">
-		<h2 class="heading">Today's To do<img src='./images/refresh.png' alt='refresh' class='refresh'></h2>
-		<div class="addTodo">
-			<input type="text" class="todoInput" placeholder="Add your task..." />
-			<img src="./images/enter.png" alt="enter">
-		</div>
-		<div class="task-content">
 
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+			integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+			crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<title>Todo list</title>
+	</head>
+
+	<body>
+		<div class="container">
+			<h2 class="heading">Today's To do<i class="fas fa-sync-alt"></i></h2>
+			<div class="addTodo">
+				<input type="text" class="todoInput" placeholder="Add your task..." />
+				<i class="fas fa-arrow-circle-left"></i>
+			</div>
+			<div class="task-content">
+
+			</div>
+			<button class="clear">clear all completed</button>
 		</div>
-		<button class="clear">clear all completed</button>
-	</div>
-</body>
+	</body>
+
 </html>
